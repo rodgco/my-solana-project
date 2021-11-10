@@ -5,8 +5,9 @@
 	import ConnectWallet from '$lib/ConnectWalletButton.svelte';
 
 	import { Connection, PublicKey, clusterApiUrl, ConfirmOptions } from '@solana/web3.js';
-	import { Idl, Program, Provider, web3 } from '@project-serum/anchor';
-
+	import type { Idl } from '@project-serum/anchor';
+	import pkg from '@project-serum/anchor';
+	const { web3, Program, Provider } = pkg;
 	import idl from '$lib/idl.json';
 	import kp from '$lib/keypair.json';
 
