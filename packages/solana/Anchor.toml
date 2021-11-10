@@ -1,0 +1,12 @@
+[programs.devnet]
+solana = "D9nqSu8oR3FEACAnS1yjW2tu7abdnxgspy8K34sqbKZA"
+
+[registry]
+url = "https://anchor.projectserum.com"
+
+[provider]
+cluster = "devnet"
+wallet = "/home/rodrigo/.config/solana/id.json"
+
+[scripts]
+test = "node tests/solana.js"
