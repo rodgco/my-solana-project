@@ -12,6 +12,7 @@ const config = {
 		target: '#svelte',
 		adapter: adapter(),
 		vite: {
+			optimizeDeps: ["@project-serum/anchor"],
 			define: {
 				global: 'window',
 			}

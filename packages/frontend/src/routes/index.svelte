@@ -4,12 +4,16 @@
 	import { Writable, writable } from 'svelte/store';
 	import ConnectWallet from '$lib/ConnectWalletButton.svelte';
 
-	import { Connection, PublicKey, clusterApiUrl, ConfirmOptions } from '@solana/web3.js';
 	import type { Idl } from '@project-serum/anchor';
-	import pkg from '@project-serum/anchor';
+	import type { ConfirmOptions } from '@solana/web3.js';
+
+	import * as pkg from '@project-serum/anchor';
 	const { web3, Program, Provider } = pkg;
+
 	import idl from '$lib/idl.json';
 	import kp from '$lib/keypair.json';
+
+	const { Connection, PublicKey, clusterApiUrl } = web3;
 
 	// SystemProgram is a reference to the Solana runtime!
 	const { SystemProgram /*, Keypair */ } = web3;
@@ -147,7 +151,7 @@
 <div class="App">
 	<div class="container">
 		<div class="header-container">
-			<p class="header">My Awesome Rick &amp; Morty GIF Collection</p>
+			<p class="header gradient-text">My Awesome Rick &amp; Morty GIF Collection</p>
 			<p class="sub-text">Hosted in Solana ✨</p>
 			{#if !$walletAddress}
 				<ConnectWallet on:connect={connectWallet} />
@@ -162,7 +166,7 @@
 						<button class="cta-button submit-gif-button" on:click|preventDefault={sendGif}
 							>Submit</button
 						>
-						<div class="gif-grid">
+						<div class="gif-grid authed-container">
 							{#each $gifList as gif}
 								<div class="gif-item">
 									<img src={gif.gifLink} alt={gif.gifLink} />
@@ -235,12 +239,6 @@
 		font-size: 16px;
 		font-weight: bold;
 		color: white;
-	}
-
-	.connect-wallet-button {
-		background: -webkit-linear-gradient(left, #60c657, #35aee2);
-		background-size: 200% 200%;
-		animation: gradient-animation 4s ease infinite;
 	}
 
 	.submit-gif-button {
